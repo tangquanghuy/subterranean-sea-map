@@ -196,7 +196,7 @@
     for(const n of records.filter(n=>(positions[n.id]?.[2]||'unlocated')===kind)){
       const entry=mk('button','expedition-entry');entry.type='button';
       const icon=mk('img');icon.src=n.icon;icon.alt='';entry.append(icon,mk('span','',n.name));
-      entry.dataset.node=n.id;entry.addEventListener('click',()=>{if(routeMode && unlocked(n.id))choose(n.id);open(n.id);directory.hidden=true});list.append(entry);
+      entry.dataset.node=n.id;window.EARTHSEA_DANGER.pin(entry,n.name,n.sections?.['危险等级'],!unlocked(n.id));entry.addEventListener('click',()=>{if(routeMode && unlocked(n.id))choose(n.id);open(n.id);directory.hidden=true});list.append(entry);
     }
   }
   document.getElementById('expedition-list').addEventListener('click',()=>{directory.hidden=!directory.hidden;if(!directory.hidden)close()});
@@ -210,7 +210,7 @@
     const signature=JSON.stringify(patches);
     if(signature!==previous){fog.paint(patches.length===Object.keys(positions).length?null:patches);previous=signature;}
     for(const [id,pin] of pins){pin.classList.toggle('locked',!unlocked(id));const n=byId.get(id);window.EARTHSEA_DANGER.pin(pin,n.name,n.sections?.['危险等级'],!unlocked(id));}
-    for(const entry of document.querySelectorAll('.expedition-entry'))entry.classList.toggle('locked',!unlocked(entry.dataset.node));
+    for(const entry of document.querySelectorAll('.expedition-entry')){const n=byId.get(entry.dataset.node);entry.classList.toggle('locked',!unlocked(n.id));window.EARTHSEA_DANGER.pin(entry,n.name,n.sections?.['危险等级'],!unlocked(n.id));}
     for(const {a,b,el} of paths)el.classList.toggle('locked',!unlocked(a)||!unlocked(b));
     if(start&&!unlocked(start))start=null;
     if(end&&!unlocked(end))end=null;
