@@ -192,6 +192,7 @@
       const n=byId.get(id);
       el.hidden=!visible.has(id);
       el.classList.toggle('locked',!unlocked(n) && !editing);
+      window.EARTHSEA_DANGER.pin(el,name(id),current(n)?.risk,!unlocked(n));
       el.setAttribute('aria-label',name(id)+(unlocked(n)?' · 查看地点卡':' · 查看寻访线索'));
       el.classList.toggle('minimal',!window.EARTHSEA_EDITOR?.editing && zoom < 160 && id !== selected && id !== '01-14');
       el.classList.toggle('active',id === selected);
@@ -216,7 +217,7 @@
     const located=unlocked(node);
     selected=node.id;
     node=located ? current(node) : node;
-    document.getElementById('card-title').textContent=name(node.id);
+    window.EARTHSEA_DANGER.card(document.getElementById('card-title'),document.getElementById('card-danger'),name(node.id),node.risk,!located);
     document.getElementById('card-class').textContent=located ? `${node.kind} · 已标定` : '海图边注 · 方位未明';
     const icon=document.getElementById('card-icon'); icon.style.display='';icon.classList.toggle('uncharted',!located);icon.src=`assets/crests-v3/${crest(node.id)}.webp`;icon.alt=`${name(node.id)}盾徽`;
     scroll.replaceChildren();
@@ -241,7 +242,7 @@
   }
   function directory() {
     selected=null;
-    document.getElementById('card-title').textContent='地海地点索引';
+    window.EARTHSEA_DANGER.card(document.getElementById('card-title'),document.getElementById('card-danger'),'地海地点索引','',true);
     document.getElementById('card-class').textContent='';
     document.getElementById('card-icon').style.display='none';
     document.querySelector('.card-actions').hidden=true;
@@ -259,6 +260,7 @@
         button.dataset.location=n.id;
         const img=document.createElement('img');img.loading='lazy';img.src=`assets/crests-v3/${crest(n.id)}.webp`;img.alt='';button.append(img);
         text('span',name(n.id),button);
+        window.EARTHSEA_DANGER.pin(button,name(n.id),current(n)?.risk,!unlocked(n));
         button.addEventListener('click',()=>openNode(n));list.append(button);
       }
       scroll.append(list);

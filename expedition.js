@@ -77,7 +77,7 @@
     const n=byId.get(id);directory.hidden=true;card.hidden=false;card.dataset.node=id;
     document.getElementById('expedition-trip').hidden=true;document.getElementById('expedition-trip-go').disabled=true;
     document.getElementById('expedition-card-icon').src=n.icon;
-    document.getElementById('expedition-card-title').textContent=n.name;
+    window.EARTHSEA_DANGER.card(document.getElementById('expedition-card-title'),document.getElementById('expedition-card-danger'),n.name,n.sections?.['危险等级'],!unlocked(id));
     document.getElementById('expedition-card-category').textContent=tags[positions[id]?.[2]||'unlocated'];
     body.replaceChildren();
     if(!unlocked(id)){
@@ -209,7 +209,7 @@
     const patches=Object.entries(positions).filter(([id])=>unlocked(id)).map(([,p])=>({x:p[0],y:p[1],radius:520}));
     const signature=JSON.stringify(patches);
     if(signature!==previous){fog.paint(patches.length===Object.keys(positions).length?null:patches);previous=signature;}
-    for(const [id,pin] of pins)pin.classList.toggle('locked',!unlocked(id));
+    for(const [id,pin] of pins){pin.classList.toggle('locked',!unlocked(id));const n=byId.get(id);window.EARTHSEA_DANGER.pin(pin,n.name,n.sections?.['危险等级'],!unlocked(id));}
     for(const entry of document.querySelectorAll('.expedition-entry'))entry.classList.toggle('locked',!unlocked(entry.dataset.node));
     for(const {a,b,el} of paths)el.classList.toggle('locked',!unlocked(a)||!unlocked(b));
     if(start&&!unlocked(start))start=null;

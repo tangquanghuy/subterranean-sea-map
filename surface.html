@@ -32,7 +32,7 @@
   <div class="chart-controls chrome"><button type="button" id="toggle-routes" aria-pressed="false">显示航路</button></div><div class="global-links chrome"><a href="index.html">‹ 地海世界</a><a href="surface-expedition.html">巨坑远征区 ↗</a><button type="button" id="world-directory-button">地点索引</button></div>
   <section class="world-card" id="world-card" aria-labelledby="world-card-title" hidden>
     <button type="button" id="world-card-close" class="world-close" aria-label="关闭地点详情">×</button>
-    <header class="world-card-header"><img id="world-card-icon" alt="" hidden><div><small id="world-card-class"></small><h2 id="world-card-title"></h2></div></header>
+    <header class="world-card-header"><img id="world-card-icon" alt="" hidden><div><small id="world-card-class"></small><div class="danger-title-line"><h2 id="world-card-title"></h2><span class="danger-badge" id="world-card-danger" hidden></span></div></div></header>
     <div id="world-card-body" class="world-card-body"></div><div class="surface-trip" id="surface-trip" hidden><p id="surface-trip-summary"></p><button type="button" id="surface-trip-go" disabled>出发</button></div>
   </section>
   <section class="world-directory" id="world-directory" aria-label="地表地点索引" hidden>
@@ -44,7 +44,7 @@
   <div class="loading" id="loading" role="status"><span class="loading-ornament">✧</span><p>正在展开地表地图</p><small>THE SURFACE</small></div>
   <div class="notice" id="notice" role="status" hidden></div>
 </main>
-<script src="map-discovery-data.js"></script><script src="chart-fog.js"></script><script src="global-surface-data.js"></script><script src="global-surface-supplementary.js"></script><script src="map-runtime.js"></script><script src="global-surface.js"></script><script src="map.js"></script>
+<script src="map-discovery-data.js"></script><script src="chart-fog.js"></script><script src="global-surface-data.js"></script><script src="global-surface-supplementary.js"></script><script src="map-runtime.js"></script><script src="danger.js"></script><script src="global-surface.js"></script><script src="map.js"></script>
 </body>
 </html>
 

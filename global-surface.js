@@ -20,6 +20,7 @@
   const supplementary=new Map(window.GLOBAL_SURFACE_SUPPLEMENTARY.map(node=>[node.id,{...node,icon:`assets/crests-surface/${node.id}.webp`}]));
   const regionById=new Map(regions.map(r=>[r.id,r]));
   const allById=id=>byId.get(id)||regionById.get(id)||supplementary.get(id);
+  const riskFor=id=>{const n=allById(id);return (n?.chartedSections||n?.sections)?.['危险等级']||'';};
   const visibleName=id=>{const n=allById(id);return unlocked(id)&&n.chartedName?n.chartedName:n.name};
   let injectedData=null;
   const runtime=window.EARTHSEA_RUNTIME;
@@ -226,12 +227,12 @@
     for(const {button,id} of pins){
       button.classList.toggle('locked',!unlocked(id));
       button.setAttribute('aria-label',visibleName(id)+(unlocked(id)?'，查看地点':'，查看寻访线索'));
-      button.querySelector('.pin-label').textContent=visibleName(id);
+      window.EARTHSEA_DANGER.pin(button,visibleName(id),riskFor(id),!unlocked(id));
     }
     for(const entry of document.querySelectorAll('#world-directory-list .entry')){
       const id=entry.dataset.location,charted=unlocked(id);
       entry.classList.toggle('uncharted',!charted);
-      const label=entry.querySelector('span');if(label)label.textContent=visibleName(id);
+      window.EARTHSEA_DANGER.pin(entry,visibleName(id),riskFor(id),!charted);
       const icon=entry.querySelector('img');
       if(!icon && iconFor(id))entry.prepend(imgFor(id));
 
@@ -246,13 +247,13 @@
     const node=allById(id);if(!node)return;
     const button=mk('button','entry');button.type='button';button.dataset.location=id;button.classList.toggle('uncharted',!unlocked(id));
     if(iconFor(id))button.append(imgFor(id));
-    button.append(mk('span','',visibleName(id)));
+    button.append(mk('span','',visibleName(id)));window.EARTHSEA_DANGER.pin(button,visibleName(id),riskFor(id),!unlocked(id));
     button.addEventListener('click',()=>open(id));parent.append(button);
   }
   function open(id){
     const node=allById(id);if(!node)return;
     card.dataset.location=id;card.dataset.unlocked=String(unlocked(id));directory.hidden=true;card.hidden=false;cardBody.replaceChildren();
-    document.getElementById('world-card-title').textContent=visibleName(id);
+    window.EARTHSEA_DANGER.card(document.getElementById('world-card-title'),document.getElementById('world-card-danger'),visibleName(id),riskFor(id),!unlocked(id));
     const icon=document.getElementById('world-card-icon');
     icon.hidden=!iconFor(id);icon.classList.toggle('uncharted',!unlocked(id));if(!icon.hidden)icon.src=iconFor(id);
     document.getElementById('world-card-class').textContent=regionById.has(id)?'地表区域':byId.has(id)?'地表地点':'地表地点';

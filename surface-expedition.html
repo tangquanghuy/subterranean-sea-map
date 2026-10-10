@@ -31,7 +31,7 @@
   </nav>
   <div class="expedition-actions chrome"><button type="button" id="expedition-lines" aria-pressed="false">显示航路</button><button type="button" id="expedition-route">查找路线</button><button type="button" id="expedition-list">地点目录</button></div>
   <div class="expedition-routing chrome" id="expedition-routing" hidden><span id="expedition-routing-text">从当前位置选择目的地</span><button type="button" id="expedition-route-clear">结束</button></div>
-  <section class="expedition-card chrome" id="expedition-card" hidden aria-label="地点详情"><button type="button" class="expedition-close" id="expedition-card-close" aria-label="关闭地点详情">×</button><header><img id="expedition-card-icon" alt=""><div><small id="expedition-card-category"></small><h2 id="expedition-card-title"></h2></div></header><div id="expedition-card-body"></div><div class="expedition-trip" id="expedition-trip" hidden><p id="expedition-trip-summary"></p><button type="button" id="expedition-trip-go" disabled>出发</button></div></section>
+  <section class="expedition-card chrome" id="expedition-card" hidden aria-label="地点详情"><button type="button" class="expedition-close" id="expedition-card-close" aria-label="关闭地点详情">×</button><header><img id="expedition-card-icon" alt=""><div><small id="expedition-card-category"></small><div class="danger-title-line"><h2 id="expedition-card-title"></h2><span class="danger-badge" id="expedition-card-danger" hidden></span></div></div></header><div id="expedition-card-body"></div><div class="expedition-trip" id="expedition-trip" hidden><p id="expedition-trip-summary"></p><button type="button" id="expedition-trip-go" disabled>出发</button></div></section>
   <section class="expedition-directory chrome" id="expedition-directory" hidden aria-label="地点目录"><header><h2>地点目录</h2><button type="button" class="expedition-close" id="expedition-directory-close" aria-label="关闭地点目录">×</button></header><div id="expedition-directory-body"></div></section>
   <a class="surface-back chrome" href="surface.html" aria-label="返回全球地表地图">‹ 全球地表</a>
   <div class="player-position chrome" id="player-position" aria-live="polite">当前位置：位置未载入</div>
@@ -39,7 +39,7 @@
   <div class="notice" id="notice" role="status" hidden></div>
 </main>
 <script src="map-discovery-data.js"></script><script src="chart-fog.js"></script><script src="expedition-data.js"></script>
-<script src="map-runtime.js"></script><script src="expedition.js"></script>
+<script src="map-runtime.js"></script><script src="danger.js"></script><script src="expedition.js"></script>
 <script src="map.js"></script>
 </body>
 </html>
