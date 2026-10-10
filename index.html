@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#080f13">
+<title>诡秘地海 · 地海世界海图</title><link rel="stylesheet" href="map.css">
+</head>
+<body>
+<main class="atlas" id="atlas" aria-label="地海世界海图">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="viewport" id="viewport" tabindex="0" role="region" aria-label="地图画布，可拖拽，滚轮或双指缩放，Home 键复位">
+    <img class="map-image" id="map-image" src="assets/earthsea-world-v11-4k.webp" alt="诡秘地海的地海世界海图" draggable="false">
+    <div class="chart-overlay" id="chart-overlay" aria-label="地图地点与航路"><svg class="sea-lines" id="sea-lines" viewBox="0 0 1000 1000" aria-hidden="true"></svg><div id="map-pins"></div></div>
+  </div>
+  <div class="edge-shade" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <header class="masthead chrome">
+    <span class="eyebrow"><span class="small-rule"></span> THE SUBTERRANEAN SEA</span>
+    <h1>诡秘地海</h1>
+    <div class="subtitle"><span>地海世界</span><span class="divider"></span><span>航海图集 · 第一卷</span></div>
+    <nav class="layer-switch" aria-label="地图层级"><a href="index.html" aria-current="page">地海世界</a><a href="surface-expedition.html">巨坑远征</a><a href="surface.html">全球地表</a></nav>
+  </header>
+  <div class="edition chrome"><span class="edition-line"></span><span>海面层</span><b>01</b></div>
+  <button type="button" class="visibility icon-button" id="toggle-ui" title="隐藏界面（H）" aria-label="隐藏界面" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8V4h4M17 4h4v4M21 16v4h-4M7 20H3v-4M8 12h8"/></svg></button>
+  <nav class="tools chrome" aria-label="地图视图工具">
+    <button class="icon-button" id="zoom-in" type="button" title="放大（+）" aria-label="放大地图"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+    <span class="zoom-readout" id="zoom-readout" aria-label="当前相对适配缩放">100%</span>
+    <button class="icon-button" id="zoom-out" type="button" title="缩小（−）" aria-label="缩小地图"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+    <a class="icon-button" href="surface.html" title="前往地表地图" aria-label="前往地表地图"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 18 9 10l4 4 4-7 4 11M3 18h18"/></svg></a><a class="icon-button" href="crests.html" title="查看地点盾徽图鉴" aria-label="查看地点盾徽图鉴"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 20 5v7c0 5-3.5 8-8 10-4.5-2-8-5-8-10V5l8-3Zm-3 9 2 2 4-4"/></svg></a><span class="tool-rule"></span>
+    <button class="icon-button" id="fit" type="button" title="完整海图（Home）" aria-label="适配窗口，显示完整地图"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 3H3v6M15 3h6v6M21 15v6h-6M9 21H3v-6M3 3l6 6m12-6-6 6m6 12-6-6M3 21l6-6"/></svg></button>
+    <button class="icon-button" id="fullscreen" type="button" title="全屏（F）" aria-label="进入全屏"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5"/></svg></button>
+    <a class="icon-button" href="assets/earthsea-world-v11-4k.webp" download="诡秘地海-地海世界-4K.webp" title="下载海图" aria-label="下载海图"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg></a>
+  </nav>
+  <div class="player-position chrome" id="player-position" aria-live="polite">当前位置：位置未载入</div>
+  <div class="chart-controls chrome"><button type="button" id="toggle-routes" aria-pressed="false">显示航路</button><button type="button" id="toggle-rumors" aria-pressed="false">只看传闻</button><button type="button" id="open-directory">地点索引</button><button type="button" id="toggle-editor" aria-pressed="false" title="开启后拖动盾徽调整图钉位置">调整图钉</button><span class="editor-actions" id="editor-actions" hidden><button type="button" id="save-placement">保存落点</button><button type="button" id="export-placement">导出坐标</button><button type="button" id="import-placement">导入坐标</button><input type="file" id="placement-file" accept=".json,application/json" hidden><button type="button" id="reset-placement" title="清除本机所有手工调整">清除调整</button></span></div>
+  <div class="chart-legend chrome" id="chart-legend" hidden>━ 相邻航路　<span class="legend-explore">━ 已记载航程</span>　<span class="legend-inferred">┄ 推测航线</span></div>
+  <section class="node-card" id="node-card" hidden role="dialog" aria-modal="false" aria-labelledby="card-title"><div class="card-head"><img id="card-icon" alt=""><div><small id="card-class"></small><h2 id="card-title"></h2></div><button type="button" id="card-close" aria-label="关闭地点卡">×</button></div><div class="card-scroll" id="card-scroll"></div><div class="card-actions"><button type="button" id="route-to">规划至此</button></div></section>
+  <section class="trip-panel chrome" id="trip-panel" hidden aria-live="polite"><div class="trip-title">航路 <button type="button" id="trip-close" aria-label="清除航路">×</button></div><div id="trip-summary"></div><ol id="trip-legs"></ol><label><input id="allow-inferred" type="checkbox">纳入推测接续航线</label><button type="button" id="trip-go" disabled>出发</button></section>
+  <div class="compass chrome" aria-hidden="true"><span class="north">N</span><span class="west">W</span><span class="east">E</span><span class="south">S</span><div class="compass-ring"></div><div class="needle north-needle"></div><div class="needle south-needle"></div><div class="compass-center"></div></div>
+  <div class="loading" id="loading" role="status"><span class="loading-ornament">✧</span><p>正在展开海图</p><small>THE SUBTERRANEAN SEA</small></div>
+  <div class="notice" id="notice" role="status" hidden></div>
+</main>
+<script src="node-data.js"></script><script src="map-discovery-data.js"></script><script src="chart-fog.js"></script><script src="node-variants.js"></script><script src="sea-affiliates-data.js"></script><script src="map-placement.js"></script><script src="sea-distances.js"></script><script src="sea-net.js"></script><script src="map.js"></script><script src="map-runtime.js"></script><script src="map-layer.js"></script><script src="map-editor.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+.global-surface .ambient{background:#081018}
+.global-surface .masthead{z-index:2}
+.world-overlay{position:absolute;left:0;top:0;width:4096px;height:4096px;transform-origin:0 0;pointer-events:none;will-change:transform}
+.world-pin{position:absolute;left:var(--px);top:var(--py);transform:translate(-50%,-100%) scale(var(--invscale,1));transform-origin:center bottom;z-index:2;pointer-events:auto;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0;min-width:100px;max-width:126px;padding:0;border:0;background:transparent;color:#fff0d5;filter:drop-shadow(0 2px 4px #000);}
+.world-pin img{width:42px;height:42px;object-fit:contain;filter:drop-shadow(0 0 1px #eedca3) drop-shadow(0 2px 3px #000)}
+.world-pin .region-gem{width:26px;height:26px;border:2px solid #f1d8a6;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a99573,#342b29 73%);box-shadow:inset 0 0 0 3px #493b2a,0 0 9px #090e18;display:block;margin:8px}
+.world-pin .pin-label{font:600 12px/1.3 'Songti SC','Microsoft YaHei',sans-serif;letter-spacing:.5px;text-shadow:0 2px 3px #000,0 0 8px #000,0 0 12px #000;white-space:nowrap}
+.world-pin.secondary .pin-label{font-size:10px}.world-pin.secondary img{width:36px;height:36px}
+.world-pin:hover,.world-pin:focus-visible,.world-pin.active{z-index:6;filter:drop-shadow(0 0 9px #e9c27b)}
+.world-pin[hidden]{display:none}
+.global-links{position:absolute;left:53px;bottom:46px;z-index:5;display:flex;flex-wrap:wrap;gap:8px}
+.global-links a,.global-links button{display:inline-flex;align-items:center;cursor:pointer;padding:8px 11px;border:1px solid #b39d6b7c;border-radius:3px;background:#071318e8;color:#e6d1a1;text-decoration:none;font-size:11px;letter-spacing:1px}
+.global-links a:hover,.global-links button:hover{background:#273735;color:#fff0c8}
+.global-surface.pure .global-links,.global-surface.pure .world-overlay{opacity:0;pointer-events:none}
+.world-card,.world-directory{position:absolute;z-index:9;top:50%;right:100px;transform:translateY(-50%);width:min(435px,calc(100vw - 30px));max-height:78dvh;overflow:auto;padding:17px 21px 22px;border:1px solid #c2aa75a3;border-radius:4px;background:linear-gradient(156deg,#16272bee,#0a1519f5 65%);box-shadow:0 18px 55px #000c;backdrop-filter:blur(15px);color:#e5dccc;scrollbar-color:#9c855d #112025}
+.world-card[hidden],.world-directory[hidden]{display:none}
+.world-card-header{display:flex;gap:12px;align-items:center;padding-right:26px;padding-bottom:14px;border-bottom:1px solid #c2aa7549}.world-card-header img{width:56px;height:56px;object-fit:contain}.world-card-header small{font-size:10px;color:#baaa8b}.world-card h2,.world-directory h2{font:normal 23px/1.35 'Songti SC',SimSun,serif;letter-spacing:2px;margin:4px 0}
+.world-close{position:absolute;right:14px;top:8px;color:#f3dbb3;font-size:27px;border:0;background:none;cursor:pointer}
+.world-card-body h3{font-size:12px;color:#e5c388;font-weight:500;letter-spacing:2px;margin:19px 0 6px}.world-card-body p{font-size:12px;line-height:1.85;margin:0;white-space:pre-line}.world-card-body .hint{color:#b8bbb2}.world-card-body button,.world-directory-list button,.world-directory button.entry{display:flex;align-items:center;text-align:left;width:100%;margin-top:7px;padding:8px 10px;gap:10px;border:1px solid #b39d6b4f;background:#17282b;color:#ecdfc0;font:12px/1.4 'Microsoft YaHei',sans-serif;cursor:pointer}.world-card-body button:hover,.world-directory button.entry:hover{background:#324447;border-color:#debf89}.world-card-body button img,.world-directory button.entry img{width:32px;height:32px;object-fit:contain;flex:none}.world-card-body .external{margin-top:18px;text-decoration:none;display:inline-block;color:#ead09b;border-bottom:1px solid #b39d6b77;font-size:12px;padding-bottom:4px}
+.world-directory{left:53px;right:auto;top:50%;width:min(390px,calc(100vw - 30px))}.world-directory header{display:flex;justify-content:space-between}.world-directory h2{font-size:21px}.world-directory p{font-size:11px;color:#c3c8bb;line-height:1.6}.world-directory h3{font-size:11px;letter-spacing:2px;color:#d9bd8c;border-bottom:1px solid #b39d6b55;padding:9px 0 7px}.world-directory button.entry{margin-top:4px}
+@media(max-width:700px){.global-links{left:18px;bottom:53px;right:17px;gap:5px}.global-links a,.global-links button{font-size:10px;padding:7px 6px}.world-card,.world-directory{top:auto;bottom:11px;left:11px;right:11px;transform:none;width:auto;max-height:63dvh}.world-directory{max-height:70dvh}.global-surface .gestures{display:none}}
+/* Short screens reserve the upper gutter for controls rather than covering East Asia. */
+@media(max-width:700px) and (min-height:700px){
+  .global-surface .tools{top:164px;right:20px;transform:none;flex-direction:row;padding:2px 5px}
+  .global-surface .tools .icon-button{width:35px;height:35px}
+  .global-surface .tools .zoom-readout{width:35px;text-align:center}
+  .global-surface .tools .tool-rule{width:1px;height:21px;margin:0 3px}
+}
+/* Pins are individual places, not geographic-scale region emblems. */
+.global-surface .world-pin{min-width:32px;max-width:none;min-height:38px;gap:2px;padding:0 2px;--pin-core:#a99573;--pin-edge:#e9c995}
+.global-surface .world-pin[data-group="south-america"]{--pin-core:#60947a;--pin-edge:#b6d8a4}
+.global-surface .world-pin[data-group="europe"]{--pin-core:#8c8cac;--pin-edge:#d9cead}
+.global-surface .world-pin[data-group="china"]{--pin-core:#a57e5b;--pin-edge:#ebce94}
+.global-surface .world-pin[data-group="indian-ocean"]{--pin-core:#629baa;--pin-edge:#b7dfd7}
+.global-surface .world-pin[data-group="antarctica"]{--pin-core:#b1c5d0;--pin-edge:#f6eacb}
+.global-surface .world-pin img{width:33px;height:33px}
+.global-surface .world-pin .region-gem{width:22px;height:22px;margin:5px 0 3px;border-color:var(--pin-edge);background:radial-gradient(circle at 34% 28%,var(--pin-edge),var(--pin-core) 55%,#141c22 100%);box-shadow:inset 0 0 0 3px #141e23,0 2px 8px #000}
+.global-surface .world-pin.moving .region-gem{border-style:dashed;border-radius:5px;transform:rotate(-10deg)}
+.global-surface .world-pin .pin-label{font:600 10px/1.25 'Songti SC','Microsoft YaHei',sans-serif;letter-spacing:0;white-space:nowrap;padding:3px 5px;color:#f5e8cd;border:1px solid #c8af7544;border-radius:2px;background:#071419df;box-shadow:0 2px 8px #0009}
+@media(max-width:700px){
+  .global-surface .world-pin{min-width:30px;min-height:34px}
+  .global-surface .world-pin img{width:27px;height:27px}
+  .global-surface .world-pin .region-gem{width:18px;height:18px;margin:4px 0}
+  .global-surface .world-pin .pin-label{display:none}
+  .global-surface .world-pin:focus-visible .pin-label{display:block}
+}
+
+.world-directory button.entry[hidden],.world-directory-list button.entry[hidden]{display:none}
+
+
+#world-directory-list .entry.uncharted{opacity:.68;border-style:dashed}
+.world-overlay .discovery-fog,.expedition-overlay .discovery-fog{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:1}
+.world-pin.locked img,#world-directory-list .entry.uncharted img{filter:drop-shadow(0 2px 5px #000)}
+
+.world-pin.locked:hover img,.world-pin.locked:focus-visible img{filter:drop-shadow(0 0 7px #dbc69d)}
+#world-card-icon.uncharted{filter:grayscale(.85) brightness(.7)}
+
+
+@media(max-width:700px){
+  .global-surface .global-links,.global-surface .tools,.global-surface .visibility{display:none!important}
+  .global-surface .world-card,.global-surface .world-directory{bottom:0;left:0;right:0;width:100%;max-height:73dvh;border-radius:14px 14px 0 0;padding-bottom:max(18px,env(safe-area-inset-bottom))}
+  #world-card-icon.uncharted{filter:none}
+}
+
+/* Layer switch supersedes the old link and directory panel. */
+.global-surface .global-links{display:none!important}
+
+.surface-trip{padding:12px 20px;border-top:1px solid rgba(192,168,119,.4)}.surface-trip p{line-height:1.7}.surface-trip button{padding:9px 22px;background:#a88d59;border:0;border-radius:7px;color:#081720;font-weight:700}.surface-trip button:disabled{opacity:.45}
+
+/* Discrete geographic route links. Illustration coordinates govern drawing only. */
+.global-surface .world-routes{position:absolute;inset:0;z-index:1;overflow:visible;pointer-events:none}
+.global-surface .world-routes.off{display:none}
+.global-surface .world-routes path{fill:none;stroke:#c8caac;stroke-width:3;stroke-opacity:.36;vector-effect:non-scaling-stroke}
+.global-surface .world-routes path.interregional{stroke-dasharray:7 9;stroke-opacity:.23}
+.global-surface .world-routes path.selected{stroke:#e5c986;stroke-width:4;stroke-opacity:.87;stroke-dasharray:none}

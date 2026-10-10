@@ -1,0 +1,5 @@
+﻿.surface .ambient{background:#080d0f}
+.surface-back{position:absolute;left:53px;bottom:49px;z-index:3;padding:9px 13px;border:1px solid #b39d6b85;border-radius:3px;background:#081217d9;color:#e6d1a1;text-decoration:none;font-size:12px;letter-spacing:2px;text-shadow:0 1px 6px #000}
+.surface-back:hover,.surface-back:focus-visible{background:#29332f;color:#fff0c8}
+.surface.pure .chrome{opacity:0;pointer-events:none}
+@media(max-width:700px){.surface-back{left:29px;bottom:55px;font-size:10px;padding:8px 10px}}

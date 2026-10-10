@@ -1,0 +1,21 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08141b">
+<title>地点盾徽图鉴 · 诡秘地海</title>
+<link rel="stylesheet" href="crests.css">
+</head>
+<body>
+<header class="topbar"><a href="index.html" class="back">← 返回地海海图</a><span>THE SUBTERRANEAN SEA · HERALDRY</span></header>
+<main>
+  <div class="intro"><div class="eyebrow">WORLD ATLAS · VOL. 01 / CRESTS</div><h1>地点盾徽图鉴<span>✦</span></h1><p>暗金属 · 深海珐琅 · 每个地点与航船的独立徽记</p></div>
+  <div class="controls"><div class="tabs" role="group" aria-label="筛选地点层级"><button class="active" type="button" data-layer="all">全部 <span>84</span></button><button type="button" data-layer="earthsea">地海世界 <span>60</span></button><button type="button" data-layer="surface">地表 <span>20</span></button><button type="button" data-layer="other">异空间 <span>4</span></button></div><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索地点、航船或编号" autocomplete="off" aria-label="搜索地点、航船或编号"></label></div>
+  <div class="count" id="count" aria-live="polite"></div>
+  <section class="grid" id="grid" aria-label="地点盾徽"></section>
+  <p class="empty" id="empty" hidden>未找到匹配的地点。</p>
+</main>
+<dialog id="detail" aria-labelledby="detail-title"><button class="close" id="close-detail" type="button" aria-label="关闭预览">×</button><div class="detail-inner"><div class="detail-art"><img id="detail-image" alt=""></div><div class="detail-copy"><div class="eyebrow" id="detail-meta"></div><h2 id="detail-title"></h2><div class="detail-id" id="detail-id"></div><p id="detail-desc"></p><a id="detail-download" download>下载独立透明盾徽 ↓</a></div></div></dialog>
+<script src="crests-data.js"></script><script src="crests.js"></script>
+</body>
+</html>

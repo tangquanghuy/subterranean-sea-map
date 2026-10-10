@@ -1,0 +1,68 @@
+﻿.expedition-overlay{position:absolute;left:0;top:0;width:4096px;height:4096px;transform-origin:0 0;pointer-events:none;will-change:transform}
+.expedition-routes{position:absolute;inset:0;overflow:visible;pointer-events:none;transition:opacity .2s}
+.expedition-routes.off{opacity:0}
+.expedition-line{fill:none;stroke:#d8caab;stroke-width:5;stroke-opacity:.53;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 1px 1px #000)}
+.expedition-line.rail{stroke:#d4b99a;stroke-width:6;stroke-opacity:.75}
+.expedition-line.flight{stroke:#98b6ae;stroke-dasharray:8 9;stroke-opacity:.7}
+.expedition-line.dimmed{stroke-opacity:.16}
+.expedition-line.selected{stroke:#fff0c3;stroke-width:9;stroke-opacity:.95;stroke-dasharray:none}
+.expedition-pin{position:absolute;transform:translate(-50%,-100%) scale(var(--invscale,1));transform-origin:center bottom;z-index:2;pointer-events:auto;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;padding:0;border:0;background:none;color:#f4e6c9;filter:drop-shadow(0 2px 4px #000)}
+.expedition-pin img{width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 0 2px #ffe6bb) drop-shadow(0 3px 4px #000)}
+.expedition-pin-label{white-space:nowrap;font:600 11px/1.35 'Songti SC','Microsoft YaHei',sans-serif;padding:3px 6px;border-radius:3px;border:1px solid #c9b38988;background:#071117df;box-shadow:0 2px 8px #000a}
+.expedition-pin.flight .expedition-pin-label{border-color:#a1b8ae9c}
+.expedition-pin.unlocated .expedition-pin-label{border-style:dashed;border-color:#b0a8a379}
+.expedition-pin.realm .expedition-pin-label{border-color:#a79bc3a0;background:#171724e8}
+.expedition-pin:hover,.expedition-pin:focus-visible,.expedition-pin.active,.expedition-pin.route-selected{z-index:7;filter:drop-shadow(0 0 10px #edcc82)}
+.expedition-pin.route-selected .expedition-pin-label{border-color:#fff2bf;background:#4b3924}
+.expedition-actions{position:absolute;z-index:4;bottom:49px;left:205px;display:flex;gap:7px}
+.expedition-actions button,.expedition-routing button{padding:9px 11px;border:1px solid #b39d6b9e;border-radius:3px;color:#f2dfbb;background:#081217ed;cursor:pointer;font-size:11px;letter-spacing:1px}
+.expedition-actions button:hover,.expedition-actions button.on{background:#344146}
+.expedition-routing{position:absolute;z-index:5;left:53px;bottom:103px;display:flex;align-items:center;gap:12px;max-width:min(830px,calc(100% - 106px));padding:8px 10px 8px 15px;border:1px solid #ad986e;background:#091419f2;box-shadow:0 10px 26px #0009;color:#eedfc5;font-size:12px}
+.expedition-routing span{overflow:auto;max-height:90px;line-height:1.5}
+.expedition-routing[hidden]{display:none}
+.expedition-card,.expedition-directory{position:absolute;z-index:6;top:50%;right:53px;transform:translateY(-50%);width:min(460px,calc(100vw - 30px));max-height:min(78dvh,790px);overflow-y:auto;overscroll-behavior:contain;padding:20px 22px;background:linear-gradient(145deg,#15272aef,#091115f7);border:1px solid #c7a975a0;box-shadow:0 18px 48px #000c, inset 0 0 35px #b69d4413}
+.expedition-card[hidden],.expedition-directory[hidden]{display:none}
+.expedition-card header{display:flex;gap:13px;align-items:center;padding:4px 32px 16px 0;border-bottom:1px solid #ab987566}
+.expedition-card header img{width:58px;height:58px;object-fit:contain}
+.expedition-card header small{color:#c9b58a;font-size:11px;letter-spacing:2px}
+.expedition-card h2,.expedition-directory h2{margin:3px 0;font:normal 23px/1.4 'Songti SC',SimSun,serif;color:#f6e7cc}
+.expedition-card h3,.expedition-directory h3{font-size:12px;font-weight:500;letter-spacing:2px;color:#dfbe88;margin:19px 0 6px}
+.expedition-card p{margin:0;white-space:pre-line;font-size:12px;line-height:1.85;color:#e4dfd1}
+.expedition-close{position:absolute;top:10px;right:14px;border:0;background:transparent;color:#f1d8a6;font-size:26px;cursor:pointer}
+.expedition-directory header{position:relative;border-bottom:1px solid #b39d6b66}
+.expedition-directory{left:53px;right:auto}
+.expedition-entry{display:flex;align-items:center;gap:11px;padding:6px 9px;margin:4px 0;width:100%;text-align:left;border:1px solid #a48d634c;background:#172427;color:#f0e5d2;cursor:pointer;font-size:12px}
+.expedition-entry:hover{background:#344146}.expedition-entry img{width:34px;height:34px;object-fit:contain}
+.surface.pure .expedition-overlay,.surface.pure .expedition-card,.surface.pure .expedition-directory,.surface.pure .expedition-routing{opacity:0;pointer-events:none}
+@media(max-width:700px){.expedition-actions{left:12px;bottom:52px;gap:4px}.surface .surface-back{bottom:98px;left:12px}.expedition-actions button{font-size:10px;padding:7px 6px}.expedition-card,.expedition-directory{top:auto;bottom:12px;left:12px;right:12px;transform:none;width:auto;max-height:62dvh;padding:17px}.expedition-routing{left:12px;bottom:137px;max-width:calc(100% - 24px)}.expedition-pin img{width:30px;height:30px}.expedition-pin-label{font-size:9px;max-width:97px;overflow:hidden;text-overflow:ellipsis}.surface .gestures{display:none}}
+@media(max-width:700px){
+  .expedition-pin .expedition-pin-label{display:none}
+  .expedition-pin:focus-visible .expedition-pin-label,.expedition-pin.active .expedition-pin-label,.expedition-pin.route-selected .expedition-pin-label{display:block}
+  .surface .tools{top:164px;right:20px;transform:none;flex-direction:row;padding:2px 5px}
+  .surface .tools .icon-button{width:35px;height:35px}
+  .surface .tools .zoom-readout{width:35px;text-align:center}
+  .surface .tools .tool-rule{width:1px;height:21px;margin:0 3px}
+}
+
+.expedition-overlay .discovery-fog{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:1}
+.expedition-pin.locked img,.expedition-entry.locked img{filter:drop-shadow(0 2px 4px #03090b)}
+
+.expedition-line.locked{display:none}
+
+
+
+@media(max-width:700px){
+  .surface .tools,.surface .visibility,.surface .surface-back,.surface .gestures{display:none!important}
+  .surface .expedition-actions{top:117px;bottom:auto;left:16px;right:auto}
+  .surface .expedition-actions button:not(#expedition-lines){display:none!important}
+  .surface .expedition-actions #expedition-lines{font-size:11px;padding:8px 11px;background:#08151be8}
+  .expedition-card,.expedition-directory{bottom:0;left:0;right:0;width:100%;max-height:73dvh;border-radius:14px 14px 0 0;padding-bottom:max(18px,env(safe-area-inset-bottom))}
+  .surface:has(.expedition-card:not([hidden])) .expedition-actions{visibility:hidden;pointer-events:none}
+}
+
+/* Same one-button layout as the sea chart. */
+.surface .surface-back,.surface .expedition-actions button:not(#expedition-lines){display:none!important}
+.surface .expedition-actions{top:196px;left:53px;right:auto;bottom:auto}
+@media(max-width:700px){.surface .expedition-actions{top:117px;left:16px;right:auto;bottom:auto}}
+
+.expedition-trip{border-top:1px solid rgba(212,193,144,.3);margin-top:12px;padding-top:10px}.expedition-trip p{white-space:pre-line;line-height:1.7}.expedition-trip button{background:#ae905b;color:#092027;border:0;border-radius:8px;padding:9px 24px;font-weight:bold}.expedition-trip button:disabled{opacity:.45}

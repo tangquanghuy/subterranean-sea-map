@@ -1,0 +1,18 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 55" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="metal" x1="5" y1="4" x2="32" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff0bb"/><stop offset=".35" stop-color="#d2a95e"/><stop offset=".72" stop-color="#8b622e"/><stop offset="1" stop-color="#f2d28c"/>
+    </linearGradient>
+    <linearGradient id="core" x1="22" y1="5" x2="22" y2="43" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#37505b"/><stop offset="1" stop-color="#0b1921"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-40%" width="200%" height="195%"><feGaussianBlur in="SourceAlpha" stdDeviation="2"/><feOffset dy="2"/><feComponentTransfer><feFuncA type="linear" slope=".85"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M14 4 22 7 30 4 30 22 38 22 22 47 6 22 14 22Z" fill="url(#metal)" stroke="#171c1b" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M17 9 22 11 27 9 27 25 32 25 22 40 12 25 17 25Z" fill="url(#core)" stroke="#e9c981" stroke-width=".8" stroke-linejoin="round"/>
+    <path d="M22 16V32" stroke="#e5cd90" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M19.5 16 22 13 24.5 16 22 19Z" fill="#f8e2a5"/>
+    <path d="M17 8 22 10 27 8" stroke="#fff3c4" stroke-opacity=".8" stroke-width=".8"/>
+  </g>
+</svg>
