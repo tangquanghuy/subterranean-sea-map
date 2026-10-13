@@ -7,6 +7,10 @@
   const loading = document.getElementById('loading');
   const notice = document.getElementById('notice');
   const pointers = new Map();
+  // The status bar embeds the map in a shallow iframe. Keep the reader chrome
+  // compact there and let the chart use the full frame.
+  const embedded = new URLSearchParams(location.search).get('embed') === '1' || window.parent !== window;
+  if (embedded) atlas.classList.add('embed-mode');
   let scale = 1, fitScale = 1, x = 0, y = 0, ready = false, noticeTimer;
   const box = () => ({w: viewport.clientWidth, h: viewport.clientHeight});
   const local = event => {
@@ -30,7 +34,12 @@
   function fit(overview = false) {
     if (!ready) return;
     const {w, h} = box();
-    fitScale = Math.min(w / image.naturalWidth, h / image.naturalHeight);
+    // The iframe is a wide reading window. Cover it there so the chart does
+    // not become a narrow square with dark side bands; the full-map button
+    // still restores the contain view.
+    fitScale = embedded && !overview
+      ? Math.max(w / image.naturalWidth, h / image.naturalHeight)
+      : Math.min(w / image.naturalWidth, h / image.naturalHeight);
     // Phone maps open as an explorable, full-height canvas rather than a
     // tiny square with empty bands. The Fit button still shows the whole chart.
     scale = !overview && matchMedia("(max-width: 700px) and (orientation: portrait)").matches
