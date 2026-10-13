@@ -166,6 +166,11 @@
 .atlas.embed-mode .chart-controls{left:14px;top:14px;right:auto;bottom:auto;z-index:6}
 .atlas.embed-mode .chart-legend{left:14px;top:56px;right:auto;bottom:auto}
 .atlas.embed-mode .player-position{display:none!important}
+.atlas.embed-mode .masthead{display:block!important;top:10px;left:10px;right:10px;z-index:7;pointer-events:none;text-shadow:none}
+.atlas.embed-mode .masthead:before{display:none}
+.atlas.embed-mode .masthead> :not(.layer-switch){display:none!important}
+.atlas.embed-mode .masthead .layer-switch{display:flex!important;justify-content:flex-end;width:auto;max-width:none;margin:0 0 0 auto;pointer-events:auto}
+.atlas.embed-mode .masthead .layer-switch a{padding:7px 11px;font-size:11px;background:#07151be8;box-shadow:0 2px 8px #0009}
 .atlas.embed-mode .map-pin:not(.active) span,.atlas.embed-mode .map-pin.ship.minimal span{display:block!important}
 .atlas.embed-mode .map-pin span{max-width:150px;font-size:clamp(10px,1.45vw,13px);padding:2px 4px;background:#071419c9;border:1px solid #c4ac7740;border-radius:3px;line-height:1.25}
 .atlas.embed-mode .map-pin.secondary span{font-size:clamp(9px,1.25vw,11px)}
@@ -178,6 +183,8 @@
   .atlas.embed-mode .viewport{inset:4px}.atlas.embed-mode .frame{inset:3px}
   .atlas.embed-mode .chart-controls{left:10px;top:10px}
   .atlas.embed-mode .chart-legend{left:10px;top:50px}
+  .atlas.embed-mode .masthead .layer-switch{justify-content:flex-start;margin:0;gap:4px}
+  .atlas.embed-mode .masthead .layer-switch a{padding:7px 7px;font-size:10px}
   .atlas.embed-mode .node-card{top:auto;bottom:6px;left:6px;right:6px;transform:none;width:auto;max-height:88%;border-radius:12px}
 }
 .atlas.embed-mode .world-pin .pin-label,.atlas.embed-mode .expedition-pin .expedition-pin-label{display:block!important}
