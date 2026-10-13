@@ -181,8 +181,8 @@
 .atlas.embed-mode .card-actions{padding:9px 12px}
 @media(max-width:700px){
   .atlas.embed-mode .viewport{inset:4px}.atlas.embed-mode .frame{inset:3px}
-  .atlas.embed-mode .chart-controls{left:10px;top:10px}
-  .atlas.embed-mode .chart-legend{left:10px;top:50px}
+  .atlas.embed-mode .chart-controls{left:10px;top:54px}
+  .atlas.embed-mode .chart-legend{left:10px;top:94px}
   .atlas.embed-mode .masthead .layer-switch{justify-content:flex-start;margin:0;gap:4px}
   .atlas.embed-mode .masthead .layer-switch a{padding:7px 7px;font-size:10px}
   .atlas.embed-mode .node-card{top:auto;bottom:6px;left:6px;right:6px;transform:none;width:auto;max-height:88%;border-radius:12px}
