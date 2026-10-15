@@ -74,7 +74,6 @@
   const scroll = document.getElementById('card-scroll');
   const panel = document.getElementById('trip-panel');
   const legend = document.getElementById('chart-legend');
-  const zoomTarget = document.getElementById('viewport');
   const NS = 'http://www.w3.org/2000/svg';
   let zoom = 100, routeVisible = false, rumors = false;
   let zoomBand = -1, renderedScale = null;
@@ -344,10 +343,16 @@
   },1000);
   function toggle(button,value) { button.setAttribute('aria-pressed',String(value)); }
   function initialize() {
+    // Image loading and script loading can finish in either order. Use the
+    // current view, including its cover/portrait scale, in both cases.
+    const view=window.EARTHSEA_VIEW.getState();
+    if(!view)return;
+    zoom=view.zoom;
+    renderedScale=view.scale;
     const size=document.getElementById('map-image').naturalWidth;
     overlay.style.width=size+'px';overlay.style.height=size+'px';
     overlay.style.transform=document.getElementById('map-image').style.transform;
-    overlay.style.setProperty('--inverse-scale',String(1/Math.min(zoomTarget.clientWidth/size,zoomTarget.clientHeight/size)));
+    overlay.style.setProperty('--inverse-scale',String(1/renderedScale));
     for(const node of nodes) {
       const point=position(node);if(!point) continue;
       const pin=document.createElement('button');pin.type='button';

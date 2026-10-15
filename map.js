@@ -61,6 +61,7 @@
   }
   // Recenter without adding another panel to the map UI.
   window.EARTHSEA_VIEW = {
+    getState: () => ready ? {scale, fitScale, zoom: Math.round(scale / fitScale * 100), x, y} : null,
     center(px,py) {
       if (!ready || !Number.isFinite(px) || !Number.isFinite(py)) return false;
       x = box().w / 2 - px * scale;
